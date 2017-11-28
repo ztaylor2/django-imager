@@ -8,17 +8,16 @@
       </div>
       <div class="card">
         <div class="card-body">
-          <p class="card-text">body text</p>
+          {% if request.user.is_authenticated %}
+            <p class="card-text">Welcome {{ request.user.username }}</p>
+          {% else %}
+            <p class="card-text">Welcome! We are an imager sharing website.</p>
+          {% endif %}
         </div>
         <div class="card-footer text-muted">
         </div>
       </div>
 
-      {% if request.user.is_authenticated %}
-        <p>Welcome {{ request.user.username }}</p>
-      {% else %}
-        <p>Welcome! We are an imager sharing website.</p>
-      {% endif %}
 
     </main>
 {% endblock %}

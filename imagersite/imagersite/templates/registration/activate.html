@@ -1,0 +1,24 @@
+{% extends "imagersite/base.html" %}
+
+{% block body %}
+
+    <main class="article-content">
+      <div class="page-header">
+        <h1>Activate</h1>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          {% if request.user.is_authenticated %}
+            <p class="card-text">Welcome {{ request.user.username }}</p>
+          {% else %}
+            <p class="card-text">Welcome! We are an imager sharing website.</p>
+          {% endif %}
+          
+        </div>
+        <div class="card-footer text-muted">
+        </div>
+      </div>
+
+
+    </main>
+{% endblock %}
