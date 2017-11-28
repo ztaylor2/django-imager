@@ -2,3 +2,13 @@
     max-width: 900px;
     margin: auto;
 }
+
+.page-header {
+    padding: 1.5em;
+    margin: auto;
+    text-align: center;
+}
+
+.card-footer {
+    text-align: center;
+}
