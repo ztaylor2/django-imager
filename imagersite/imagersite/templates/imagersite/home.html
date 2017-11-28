@@ -1,6 +1,7 @@
 {% extends "imagersite/base.html" %}
 
 {% block body %}
+
     <main class="article-content">
       <div class="page-header">
         <h1>home</h1>
@@ -12,5 +13,12 @@
         <div class="card-footer text-muted">
         </div>
       </div>
+
+      {% if request.user.is_authenticated %}
+        <p>Welcome {{ request.user.username }}</p>
+      {% else %}
+        <p>Welcome! We are an imager sharing website.</p>
+      {% endif %}
+
     </main>
 {% endblock %}
