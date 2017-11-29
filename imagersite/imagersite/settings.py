@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'imager_profile',
     'imagersite',
+    'imager_profile',
+    'imager_images',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,4 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DATE_INPUT_FORMATS = ('%d-%m-%Y')

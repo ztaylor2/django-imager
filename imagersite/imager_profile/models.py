@@ -33,7 +33,8 @@ class ImagerProfile(models.Model):
         ('Weddings', 'W')
     )
 
-    user = models.OneToOneField(User, related_name='profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE,
+                                related_name='profile')
     website = models.URLField(blank=True, null=True)
     fee = models.DecimalField(max_digits=5, decimal_places=2,
                               blank=True, null=True)

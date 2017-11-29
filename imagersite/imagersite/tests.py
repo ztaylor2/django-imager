@@ -24,7 +24,7 @@ class FontendTest(TestCase):
         """Test home response content."""
         response = self.client.get(reverse_lazy('home'))
         home_response_content = response.content.decode("utf-8")
-        self.assertIn('<h1>home</h1>', home_response_content)
+        self.assertIn('<h1 class="page-title">home</h1>', home_response_content)
 
     def test_home_uses_base_template(self):
         """Test home uses base template."""
@@ -80,7 +80,7 @@ class FontendTest(TestCase):
         login_response = response.status_code
         login_response_content = response.content.decode('utf-8')
         self.assertEqual(login_response, 200)
-        self.assertIn('<h1>home</h1>', login_response_content)
+        self.assertIn('<h1 class="page-title">home</h1>', login_response_content)
 
     def test_post_registration(self):
         """Test registration works and redirects to check email page."""
