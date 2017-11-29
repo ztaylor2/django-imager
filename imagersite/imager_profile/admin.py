@@ -1,3 +1,5 @@
+"""Admin."""
 from django.contrib import admin
+from imager_profile.models import ImagerProfile, ImageActiveProfile
 
-# Register your models here.
+admin.site.register(ImagerProfile, ImageActiveProfile)

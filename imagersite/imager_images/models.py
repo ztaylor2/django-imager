@@ -15,7 +15,9 @@ class Photo(models.Model):
         ('public', 'PU')
     )
 
-    user = models.ForeignKey(ImagerProfile, on_delete=models.CASCADE, related_name='photo')
+    user = models.ForeignKey(ImagerProfile,
+                             on_delete=models.CASCADE,
+                             related_name='photo')
     image = models.ImageField(upload_to='documents/%Y/%m/%d')
 
     title = models.CharField(max_length=50, blank=False)
@@ -36,7 +38,9 @@ class Album(models.Model):
         ('public', 'PU')
     )
 
-    user = models.ForeignKey(ImagerProfile, on_delete=models.CASCADE, related_name='album')
+    user = models.ForeignKey(ImagerProfile,
+                             on_delete=models.CASCADE,
+                             related_name='album')
     photo = models.ManyToManyField(Photo, blank=True, default='',
                                    related_name='album')
 
