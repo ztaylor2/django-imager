@@ -23,36 +23,55 @@ class PhotoTest(TestCase):
 
     def setUp(self):
         """50 users in database last one has profile."""
-        profile = ImagerProfile(location='Seattle',
-                                website='example.com',
-                                fee=0.0,
-                                phone=None,
-                                camera='NK',
-                                services='P',
-                                photo_styles='O')
-
         user = User(password='potatoes', username='zachary')
         user.save()
-        profile.user = user
-        profile.save()
+        user.profile.location = 'Seattle'
+        user.profile.website = 'example.com'
+        user.profile.fee = 0.0
+        user.profile.phone = None
+        user.profile.camera = 'NK'
+        user.profile.services = 'P'
+        user.profile.photo_styles = 'O'
+        user.profile.save()
 
-        photo = Photo(user=profile,
+        photo = Photo(user=user.profile,
                       image='http://via.placeholder.com/350x150',
-                      title='title',
-                      description='description of stuff',
+                      title='photo title',
+                      description='description of photo',
                       date_published='1994-10-12',
                       published='PU')
         photo.save()
 
-    def test_user_defaults(self):
-        """Test built 50 users and last one has profile with specified settings."""
+        album = Album(user=user.profile,
+                      image='http://via.placeholder.com/350x150',
+                      title='album title',
+                      description='description of album',
+                      date_published='1994-10-12',
+                      published='PU')
+        album.photo = photo
+        album.save()
+
+    def test_photo_model(self):
+        """Test photo model."""
         one_user = User.objects.get(id=1)
-        # import pdb; pdb.set_trace()
         photo = Photo.objects.get(user=one_user.profile)
 
         self.assertEqual(photo.user.location, "Seattle")
         self.assertEqual(photo.image.name, "http://via.placeholder.com/350x150")
-        self.assertEqual(photo.title, "title")
-        self.assertEqual(photo.description, "description of stuff")
+        self.assertEqual(photo.title, "photo title")
+        self.assertEqual(photo.description, "description of photo")
         self.assertEqual(photo.date_published, datetime.date(datetime(1994, 10, 12)))
         self.assertEqual(photo.published, "PU")
+
+    def test_album_model(self):
+        """Test album model."""
+        one_user = User.objects.get(id=1)
+        # import pdb; pdb.set_trace()
+        album = Album.objects.get(user=one_user.profile)
+
+        self.assertEqual(album.user.location, "Seattle")
+        self.assertEqual(album.image.name, "http://via.placeholder.com/350x150")
+        self.assertEqual(album.title, "album title")
+        self.assertEqual(album.description, "description of album")
+        self.assertEqual(album.date_published, datetime.date(datetime(1994, 10, 12)))
+        self.assertEqual(album.published, "PU")

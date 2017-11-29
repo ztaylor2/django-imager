@@ -21,26 +21,23 @@ class ProfileTest(TestCase):
 
     def setUp(self):
         """50 users in database last one has profile."""
-        profile = ImagerProfile(location='Seattle',
-                                website='example.com',
-                                fee=0.0,
-                                phone=None,
-                                camera='NK',
-                                services='P',
-                                photo_styles='O')
-
         user = User(password='potatoes',
                     username='zach49',
                     email='zach49@example.com')
         user.save()
-
-        profile.user = user
-        profile.save()
+        user.profile.location = 'Seattle'
+        user.profile.website = 'example.com'
+        user.profile.fee = 0.0
+        user.profile.phone = None
+        user.profile.camera = 'NK'
+        user.profile.services = 'P'
+        user.profile.photo_styles = 'O'
+        user.profile.save()
 
     def test_user_defaults(self):
         """Test built 50 users and last one has profile with specified settings."""
         # import pdb; pdb.set_trace()
-        one_user = User.objects.get(id=2)
+        one_user = User.objects.get(id=3)
         all_users = User.objects.all()
         website = one_user.profile.website
         location = one_user.profile.location
