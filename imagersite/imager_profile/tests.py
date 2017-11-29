@@ -28,17 +28,19 @@ class ProfileTest(TestCase):
                                 camera='NK',
                                 services='P',
                                 photo_styles='O')
-        for i in range(50):
-            user = UserFactory.create()
-            user.set_password('potatoes')
-            user.save()
+
+        user = User(password='potatoes',
+                    username='zach49',
+                    email='zach49@example.com')
+        user.save()
 
         profile.user = user
         profile.save()
 
     def test_user_defaults(self):
         """Test built 50 users and last one has profile with specified settings."""
-        one_user = User.objects.get(id=50)
+        # import pdb; pdb.set_trace()
+        one_user = User.objects.get(id=2)
         all_users = User.objects.all()
         website = one_user.profile.website
         location = one_user.profile.location
@@ -48,7 +50,7 @@ class ProfileTest(TestCase):
         services = one_user.profile.services
         photo_styles = one_user.profile.photo_styles
         self.assertIsNotNone(one_user.profile)
-        self.assertEqual(len(all_users), 50)
+        self.assertEqual(len(all_users), 1)
         self.assertEqual(str(one_user), "zach49")
         self.assertEqual(one_user.email, "zach49@example.com")
         self.assertEqual(website, "example.com")
