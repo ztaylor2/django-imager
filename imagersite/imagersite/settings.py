@@ -131,4 +131,7 @@ LOGOUT_REDIRECT_URL = 'home'
 ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DATE_INPUT_FORMATS = ('%d-%m-%Y')
+
+MEDIA_URL = '/media/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

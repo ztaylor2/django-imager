@@ -10,9 +10,9 @@ class Photo(models.Model):
     """The photo model."""
 
     PUBLISHED = (
-        ('private', 'PR'),
-        ('shared', 'SH'),
-        ('public', 'PU')
+        ('private', 'Private'),
+        ('shared', 'Shared'),
+        ('public', 'Public')
     )
 
     user = models.ForeignKey(ImagerProfile,
@@ -33,9 +33,9 @@ class Album(models.Model):
     """The album model."""
 
     PUBLISHED = (
-        ('private', 'PR'),
-        ('shared', 'SH'),
-        ('public', 'PU')
+        ('private', 'Private'),
+        ('shared', 'Shared'),
+        ('public', 'Public')
     )
 
     user = models.ForeignKey(ImagerProfile,
