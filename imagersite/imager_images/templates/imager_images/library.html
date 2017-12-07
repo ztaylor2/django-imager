@@ -1,0 +1,27 @@
+{% extends "imagersite/base.html" %}
+
+{% block body %}
+
+    <main class="article-content">
+      <div class="page-header">
+        <h1 class="page-title">Library</h1>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text">Albums</p>
+          {% for album in data.albums %}
+            <img src="{{ album.image.url }}" style="height: 100px; width: 100px;"/>
+          {% endfor %}
+          <p class="card-text">Photos</p>
+          {% for photo in data.photos %}
+            <img src="{{ photo.image.url }}" style="height: 100px; width: 100px;"/>
+          {% endfor %}
+            <p class="card-text">Profile</p>
+        </div>
+        <div class="card-footer text-muted">
+        </div>
+      </div>
+
+
+    </main>
+{% endblock %}
