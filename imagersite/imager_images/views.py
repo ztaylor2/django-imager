@@ -16,13 +16,16 @@ class LibraryView(ListView):
         """."""
         context = super(LibraryView, self).get_context_data(**kwargs)
         photos = context['data'][2].photo.all()
+        albums = context['data'][2].album.all()
         # import pdb; pdb.set_trace()
         num_photos = len(photos)
-        num_albums = context['data'][2].album.all().count()
+        num_albums = len(albums)
+
         context['data'] = {
             'num_photos': num_photos,
             'num_albums': num_albums,
             'photos': photos,
+            'albums': albums,
         }
 
         return context

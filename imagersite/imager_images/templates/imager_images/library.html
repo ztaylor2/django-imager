@@ -1,4 +1,5 @@
 {% extends "imagersite/base.html" %}
+{% load thumbnail %}
 
 {% block body %}
 
@@ -8,15 +9,35 @@
       </div>
       <div class="card">
         <div class="card-body">
+
           <p class="card-text">Albums</p>
-          {% for album in data.albums %}
-            <img src="{{ album.image.url }}" style="height: 100px; width: 100px;"/>
-          {% endfor %}
+
+            {% for album in data.albums %}
+
+              {% thumbnail album.cover "200x200" as im %}
+                  <img src="{{ im.url }}">
+              {% empty %}
+                <p>No image</p>
+              {% endthumbnail %}
+                <p>{{ album.title }}</p>
+
+            {% endfor %}
+
           <p class="card-text">Photos</p>
-          {% for photo in data.photos %}
-            <img src="{{ photo.image.url }}" style="height: 100px; width: 100px;"/>
-          {% endfor %}
-            <p class="card-text">Profile</p>
+
+            {% for photo in data.photos %}
+
+              {% thumbnail photo.image "200x200" as im %}
+                <img src="{{ im.url }}">
+              {% empty %}
+                <p>No image</p>
+              {% endthumbnail %}
+
+              <p>{{ photo.title }}</p>
+
+            {% endfor %}
+
+          <p class="card-text"></p>
         </div>
         <div class="card-footer text-muted">
         </div>
