@@ -8,6 +8,7 @@
       </div>
       <div class="card">
         <div class="card-body">
+          <img src="{{ data.photo }}" style="height:100px; width: 100px;"/>
           {% if request.user.is_authenticated %}
             <p class="card-text">Welcome {{ request.user.username }}</p>
           {% else %}
