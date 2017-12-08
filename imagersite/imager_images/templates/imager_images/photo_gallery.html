@@ -1,0 +1,30 @@
+{% extends "imagersite/base.html" %}
+{% load thumbnail %}
+
+{% block body %}
+
+    <main class="article-content">
+      <div class="page-header">
+        <h1 class="page-title">Photos</h1>
+      </div>
+      <div class="card">
+        <div class="card-body">
+            {% for photo in data.photos %}
+
+              {% thumbnail photo.image "200x200" as im %}
+                <img src="{{ im.url }}">
+              {% empty %}
+                <p>No image</p>
+              {% endthumbnail %}
+
+              <p>{{ photo.title }}</p>
+
+            {% endfor %}
+
+        </div>
+        <div class="card-footer text-muted">
+        </div>
+      </div>
+
+    </main>
+{% endblock %}
