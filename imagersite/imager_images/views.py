@@ -1,8 +1,7 @@
-from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, CreateView
 from imager_profile.models import ImagerProfile
-
+from django.core.urlresolvers import reverse_lazy
 from imager_images.models import Album, Photo
 
 
@@ -99,3 +98,21 @@ class AlbumGalleryView(ListView):
         }
 
         return context
+
+
+class NewPhotoView(CreateView):
+    """."""
+
+    model = Photo
+    template_name = 'imager_images/add_photo.html'
+    fields = ['user', 'image', 'title', 'description', 'published', 'date_published']
+    success_url = reverse_lazy('library')
+
+
+class NewAlbumView(CreateView):
+    """."""
+
+    model = Album
+    template_name = 'imager_images/add_album.html'
+    fields = ['user', 'photo', 'title', 'description', 'cover', 'published', 'date_published']
+    success_url = reverse_lazy('library')

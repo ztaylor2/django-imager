@@ -1,7 +1,7 @@
 """Imager profile app urls."""
 from django.conf.urls import url
 
-from imager_images.views import LibraryView, PhotoView, AlbumView, AlbumGalleryView, PhotoGalleryView
+from imager_images.views import LibraryView, PhotoView, AlbumView, AlbumGalleryView, PhotoGalleryView, NewAlbumView, NewPhotoView
 
 urlpatterns = [
     url(r'^library/',
@@ -15,4 +15,6 @@ urlpatterns = [
         PhotoView.as_view(template_name='imager_images/photo.html'),
         name='photo'),
     url(r'^photos/$', PhotoGalleryView.as_view(), name='albums'),
+    url(r'^albums/add/$', NewAlbumView.as_view(), name='add_album'),
+    url(r'^photos/add/$', NewPhotoView.as_view(), name='add_photo'),
 ]
