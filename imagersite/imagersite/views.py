@@ -1,6 +1,4 @@
 """Views."""
-from django.template import loader
-from django.shortcuts import render
 from django.views import generic
 from imager_profile.models import ImagerProfile
 import random
