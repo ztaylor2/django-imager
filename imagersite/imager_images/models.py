@@ -10,9 +10,9 @@ class Photo(models.Model):
     """The photo model."""
 
     PUBLISHED = (
-        ('private', 'PR'),
-        ('shared', 'SH'),
-        ('public', 'PU')
+        ('private', 'Private'),
+        ('shared', 'Shared'),
+        ('public', 'Public')
     )
 
     user = models.ForeignKey(ImagerProfile,
@@ -33,9 +33,9 @@ class Album(models.Model):
     """The album model."""
 
     PUBLISHED = (
-        ('private', 'PR'),
-        ('shared', 'SH'),
-        ('public', 'PU')
+        ('private', 'Private'),
+        ('shared', 'Shared'),
+        ('public', 'Public')
     )
 
     user = models.ForeignKey(ImagerProfile,
@@ -43,7 +43,9 @@ class Album(models.Model):
                              related_name='album')
     photo = models.ManyToManyField(Photo, blank=True, default='',
                                    related_name='album')
-
+    cover = models.ImageField(upload_to='documents/%Y/%m/%d',
+                              blank=True,
+                              null=True)
     title = models.CharField(max_length=50, blank=False)
     description = models.TextField(max_length=500, blank=True, null=True)
     date_uploaded = models.DateField(auto_now=False, auto_now_add=True)

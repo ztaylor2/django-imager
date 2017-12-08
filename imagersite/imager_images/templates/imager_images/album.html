@@ -1,0 +1,24 @@
+{% extends "imagersite/base.html" %}
+
+{% block body %}
+
+    <main class="article-content">
+      <div class="page-header">
+        <h1 class="page-title">{{ album.title }}</h1>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          {{ album.description }}
+          <br>
+          {% for photo in album.photo.all %}
+            <img src="{{ photo.image.url }}" style="height: 100px; width: 100px;"/>
+          {% endfor %}
+        </div>
+        <div class="card-footer text-muted">
+        </div>
+      </div>
+
+
+    </main>
+{% endblock %}
+

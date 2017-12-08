@@ -1,0 +1,48 @@
+{% extends "imagersite/base.html" %}
+{% load thumbnail %}
+
+{% block body %}
+
+    <main class="article-content">
+      <div class="page-header">
+        <h1 class="page-title">Library</h1>
+      </div>
+      <div class="card">
+        <div class="card-body">
+
+          <p class="card-text">Albums</p>
+
+            {% for album in data.albums %}
+
+              {% thumbnail album.cover "200x200" as im %}
+                  <img src="{{ im.url }}">
+              {% empty %}
+                <p>No image</p>
+              {% endthumbnail %}
+                <p>{{ album.title }}</p>
+
+            {% endfor %}
+
+          <p class="card-text">Photos</p>
+
+            {% for photo in data.photos %}
+
+              {% thumbnail photo.image "200x200" as im %}
+                <img src="{{ im.url }}">
+              {% empty %}
+                <p>No image</p>
+              {% endthumbnail %}
+
+              <p>{{ photo.title }}</p>
+
+            {% endfor %}
+
+          <p class="card-text"></p>
+        </div>
+        <div class="card-footer text-muted">
+        </div>
+      </div>
+
+
+    </main>
+{% endblock %}
