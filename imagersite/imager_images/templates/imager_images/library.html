@@ -19,7 +19,9 @@
               {% empty %}
                 <p>No image</p>
               {% endthumbnail %}
-                <p>{{ album.title }}</p>
+
+              <p>{{ album.title }}</p>
+              <a href="{% url 'edit_album' album.id %}">Edit Album</a>
 
             {% endfor %}
 
@@ -34,6 +36,7 @@
               {% endthumbnail %}
 
               <p>{{ photo.title }}</p>
+              <a href="{% url 'edit_photo' photo.id %}">Edit Photo</a>
 
             {% endfor %}
 
