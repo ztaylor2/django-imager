@@ -3,19 +3,20 @@
 {% block body %}
 
     <main class="article-content">
-      <div class="page-header">
-        <h1 class="page-title">Profile</h1>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <img src="{{ data.photo_url }}" style="height: 100px; width: 100px;"/>
-            <p class="card-text">Photo Count: {{ data.num_photos }} <br> Album Count: {{ data.num_albums }}</p>
-            <p class="card-text">Profile</p>
-        </div>
-        <div class="card-footer text-muted">
-        </div>
-      </div>
 
+        <div class="page-header">
+            <h1 class="page-title" style="margin: 1em;">{{ request.user.username }}</h1>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <img src="{{ data.photo_url }}" style="height: 100px; width: 100px;"/>
+                <p class="card-text">Photo Count: {{ data.num_photos }} <br> Album Count: {{ data.num_albums }}</p>
+            </div>
+            <div class="card-footer text-muted">
+                <a class="nav-link" href="{% url 'update_profile' pk=request.user.profile.pk %}" style="float: right;"> Update Profile </a>
+            </div>
+        </div>
 
     </main>
+
 {% endblock %}

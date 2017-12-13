@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.views.generic import TemplateView, ListView, CreateView
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView
 from imager_profile.models import ImagerProfile
 from django.core.urlresolvers import reverse_lazy
 from imager_images.models import Album, Photo
@@ -101,7 +101,7 @@ class AlbumGalleryView(ListView):
 
 
 class NewPhotoView(CreateView):
-    """."""
+    """View to create new photo."""
 
     model = Photo
     template_name = 'imager_images/add_photo.html'
@@ -110,9 +110,27 @@ class NewPhotoView(CreateView):
 
 
 class NewAlbumView(CreateView):
-    """."""
+    """View to create new album."""
 
     model = Album
     template_name = 'imager_images/add_album.html'
     fields = ['user', 'photo', 'title', 'description', 'cover', 'published', 'date_published']
+    success_url = reverse_lazy('library')
+
+
+class EditPhotoView(UpdateView):
+    """View to edit photo."""
+
+    model = Photo
+    template_name = 'imager_images/edit_photo.html'
+    fields = ['user', 'image', 'title', 'description', 'published']
+    success_url = reverse_lazy('library')
+
+
+class EditAlbumView(UpdateView):
+    """View to add album."""
+
+    model = Album
+    template_name = 'imager_images/edit_album.html'
+    fields = ['user', 'photo', 'title', 'description', 'cover', 'published']
     success_url = reverse_lazy('library')

@@ -2,49 +2,66 @@
 {% load thumbnail %}
 
 {% block body %}
+{% load static %}
 
     <main class="article-content">
       <div class="page-header">
-        <h1 class="page-title">Library</h1>
+        <h1 class="page-title" style="margin: 1em;">Library</h1>
       </div>
-      <div class="card">
+      <div class="card" style="margin: 2em;">
         <div class="card-body">
 
-          <p class="card-text">Albums</p>
+          <p class="card-text" style="font-size: 2em;">Albums</p>
 
             {% for album in data.albums %}
+                <div style="border: 1px solid gray; margin: 1em; border-radius: 1em;">
 
-              {% thumbnail album.cover "200x200" as im %}
-                  <img src="{{ im.url }}">
-              {% empty %}
-                <p>No image</p>
-              {% endthumbnail %}
-                <p>{{ album.title }}</p>
+                    <p style="font-size: 1.5em;">{{ album.title }}</p>
 
+                    {% thumbnail album.cover "200x200" as im %}
+                        <img src="{{ im.url }}">
+                    {% empty %}
+                        <img src="{% static 'imagersite/noimageavailable.png' %}" style="height: 200px; width: 200px; display: block;">
+                    {% endthumbnail %}
+
+                    <a style="display: block;" href="{% url 'edit_album' album.id %}">Edit Album {{ album.title }}</a>
+                </div>
             {% endfor %}
 
-          <p class="card-text">Photos</p>
-
-            {% for photo in data.photos %}
-
-              {% thumbnail photo.image "200x200" as im %}
-                <img src="{{ im.url }}">
-              {% empty %}
-                <p>No image</p>
-              {% endthumbnail %}
-
-              <p>{{ photo.title }}</p>
-
-            {% endfor %}
-
-          <p class="card-text"></p>
         </div>
         <div class="card-footer text-muted">
-          <a href="{% url 'add_photo' %}">Add Photo</a>
-          <a href="{% url 'add_album' %}">Add Album</a>
+          <a href="{% url 'add_album' %}" style="float: right;">Add Album</a>
         </div>
       </div>
 
+
+
+      <div class="card" style="margin: 2em;">
+        <div class="card-body">
+
+          <p class="card-text" style="font-size: 2em;">Photos</p>
+
+                {% for photo in data.photos %}
+                    <div style="border: 1px solid gray; margin: 1em; border-radius: 1em;">
+                          <p style="font-size: 1.5em;">{{ photo.title }}</p>
+
+                          {% thumbnail photo.image "200x200" as im %}
+                            <img src="{{ im.url }}">
+                          {% empty %}
+                            <p>No image</p>
+                          {% endthumbnail %}
+
+                          <a style="display: block;" href="{% url 'edit_photo' photo.id %}">Edit Photo {{ photo.title }}</a>
+
+                    </div>
+                {% endfor %}
+
+            <p class="card-text"></p>
+        </div>
+        <div class="card-footer text-muted">
+          <a href="{% url 'add_photo' %}" style="float: right;">Add Photo</a>
+        </div>
+      </div>
 
     </main>
 {% endblock %}
