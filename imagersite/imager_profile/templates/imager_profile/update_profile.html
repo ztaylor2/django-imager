@@ -1,0 +1,24 @@
+{% extends "imagersite/base.html" %}
+
+{% block body %}
+
+    <main class="article-content">
+      <div class="page-header">
+        <h1 class="page-title" style="margin: 1em;">Update {{ request.user.username }}</h1>
+      </div>
+      <div class="card">
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit" />
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+            Update Profile
+        </div>
+      </div>
+
+
+    </main>
+{% endblock %}
