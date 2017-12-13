@@ -4,15 +4,15 @@
 
     <main class="article-content">
       <div class="page-header">
-        <h1 class="page-title">Profile</h1>
+        <h1 class="page-title" style="margin: 1em;">{{ request.user.username }}</h1>
       </div>
       <div class="card">
         <div class="card-body">
           <img src="{{ data.photo_url }}" style="height: 100px; width: 100px;"/>
             <p class="card-text">Photo Count: {{ data.num_photos }} <br> Album Count: {{ data.num_albums }}</p>
-            <p class="card-text">Profile</p>
         </div>
         <div class="card-footer text-muted">
+            <p class="card-text">{{ request.user.username }}'s Profile</p>
         </div>
       </div>
 
