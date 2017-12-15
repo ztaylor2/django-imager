@@ -1,9 +1,6 @@
 """Photo model managment."""
 from django.db import models
 from imager_profile.models import ImagerProfile
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 
 class Photo(models.Model):
@@ -53,11 +50,3 @@ class Album(models.Model):
     date_published = models.DateField(auto_now=False, auto_now_add=False)
     published = models.CharField(max_length=50, choices=PUBLISHED,
                                  blank=True, null=True)
-
-
-@receiver(post_save, sender=User)
-def create_profile(sender, **kwargs):
-    """Create the profile when a user is created."""
-    if kwargs['created']:
-        profile = ImagerProfile(user=kwargs['instance'])
-        profile.save()

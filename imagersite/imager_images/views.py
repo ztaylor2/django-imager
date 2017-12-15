@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView
 from imager_profile.models import ImagerProfile
 from django.core.urlresolvers import reverse_lazy
@@ -14,9 +13,8 @@ class LibraryView(ListView):
     def get_context_data(self, **kwargs):
         """."""
         context = super(LibraryView, self).get_context_data(**kwargs)
-        photos = context['data'][2].photo.all()
-        albums = context['data'][2].album.all()
-        # import pdb; pdb.set_trace()
+        photos = self.request.user.profile.photo.all()
+        albums = self.request.user.profile.album.all()
         num_photos = len(photos)
         num_albums = len(albums)
 
@@ -49,8 +47,8 @@ class PhotoGalleryView(ListView):
     def get_context_data(self, **kwargs):
         """."""
         context = super(PhotoGalleryView, self).get_context_data(**kwargs)
-        photos = context['data'][2].photo.all()
-        albums = context['data'][2].album.all()
+        photos = self.request.user.profile.photo.all()
+        albums = self.request.user.profile.album.all()
         # import pdb; pdb.set_trace()
         num_photos = len(photos)
         num_albums = len(albums)
@@ -84,9 +82,8 @@ class AlbumGalleryView(ListView):
     def get_context_data(self, **kwargs):
         """."""
         context = super(AlbumGalleryView, self).get_context_data(**kwargs)
-        photos = context['data'][2].photo.all()
-        albums = context['data'][2].album.all()
-        # import pdb; pdb.set_trace()
+        photos = self.request.user.profile.photo.all()
+        albums = self.request.user.profile.album.all()
         num_photos = len(photos)
         num_albums = len(albums)
 
