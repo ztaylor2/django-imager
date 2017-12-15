@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', '')
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split()
 
 
 # Application definition
@@ -82,6 +82,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('DATABASE_NAME', ''),
         'HOST': os.environ.get('DATABASE_HOST', ''),
+        'USER': os.environ.get('DATABASE_USERNAME', ''),
+        'PASSWORD': os.environ.get('DATABASE_PASS', ''),
         'PORT': '5432',
         'TEST': {
             'NAME': os.environ.get('DATABASE_TEST', '')
